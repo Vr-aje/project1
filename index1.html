@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Tracking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Communication Tracking Calendar</h1>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('logTab')">Log Communication</div>
+            <div class="tab" onclick="switchTab('reportTab')">Generate Report</div>
+        </div>
+
+        <!-- Tab Content for Log Communication -->
+        <div id="logTab" class="content active">
+            <form id="communicationActionForm">
+                <div class="form-group">
+                    <label for="selectCompany">Company</label>
+                    <select id="selectCompany" required>
+                        <option value="">Select Company</option>
+                        <option value="Company A">Company A</option>
+                        <option value="Company B">Company B</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="communicationType">Communication Type</label>
+                    <select id="communicationType" required>
+                        <option value="">Select Type</option>
+                        <option value="Call">Call</option>
+                        <option value="Email">Email</option>
+                        <option value="Meeting">Meeting</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="communicationDate">Date</label>
+                    <input type="date" id="communicationDate" required />
+                </div>
+                <div class="form-group">
+                    <label for="communicationNotes">Notes</label>
+                    <textarea id="communicationNotes" rows="4"></textarea>
+                </div>
+                <button type="submit">Log Communication</button>
+            </form>
+
+            <h3>Communication Logs</h3>
+            <table id="logTable">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Logs will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab Content for Report Generation -->
+        <div id="reportTab" class="content">
+            <h3>Filter Report</h3>
+            <div class="form-group">
+                <label for="companyFilter">Company</label>
+                <select id="companyFilter">
+                    <option value="">Select Company</option>
+                    <option value="Company A">Company A</option>
+                    <option value="Company B">Company B</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="methodFilter">Communication Method</label>
+                <select id="methodFilter">
+                    <option value="">All</option>
+                    <option value="Call">Call</option>
+                    <option value="Email">Email</option>
+                    <option value="Meeting">Meeting</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" />
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" />
+            </div>
+            <button onclick="filterReport()">Apply Filter</button>
+
+            <h3>Filtered Logs</h3>
+            <table id="filteredLogTable">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Filtered logs will be dynamically inserted here -->
+                </tbody>
+            </table>
+
+            <button onclick="downloadReport('csv')">Download CSV Report</button>
+            <button onclick="downloadReport('pdf')">Download PDF Report</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
